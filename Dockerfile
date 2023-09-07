@@ -15,7 +15,10 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 
 # update packages
 RUN apt update \
-    && apt dist-upgrade -y
+    && apt dist-upgrade -y \
+    && apt install git zlib1g-dev libzip-dev unzip -y
+
+RUN docker-php-ext-install zip
 
 # add composer binary from the official image
 COPY --from=composer /usr/bin/composer /usr/bin/composer
