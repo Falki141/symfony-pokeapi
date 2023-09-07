@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  symfony-pokeapi:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '8080:80'
